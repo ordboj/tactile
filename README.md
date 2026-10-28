@@ -2,7 +2,7 @@
 
 Tactile Maps is a 2D web game. It runs in the browser and on phones.
 
-A pedestrian, the working name is Walker, finds the way with sound, memory and a tactile map. Walker is a warm yellow drop-shaped character. The game has separate designed scenes and levels. The first goal is to cross a one-way road. In early levels the tactile map is always on screen. In later levels visual support fades.
+A pedestrian finds the way with sound, memory and a tactile map. The working name of the pedestrian is Walker. Walker is a warm yellow drop-shaped character. The game has separate designed scenes and levels. The first goal is to cross a one-way road. In early levels the tactile map is always on screen. In later levels visual support fades.
 
 Tactile Maps is a game. It is not a navigation app.
 
