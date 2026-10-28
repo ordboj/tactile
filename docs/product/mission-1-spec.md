@@ -45,13 +45,14 @@ The lead (Piyangocu) decided these open questions on 2026-10-29. Section 14 mark
 | OQ-11 | The product-manager rewrites README.md to the new framing in a small PR. The player-psychologist does the ethics review. |
 | OQ-12 | Working name: "Walker". Tuğrul decides the final name later. Nobody waits for the final name. |
 | OQ-14 | The tip list reviewers are the design-critic and the player-psychologist. Then the approver. |
+| OQ-15 | Part B has no traffic light. Part B has one car on the one-way road. The player listens and waits. |
 
 Plan status:
 
 - The lead accepted the ticket list as the plan.
 - TAC-5 to TAC-10 may start now.
 - **Gate:** TAC-11 and all tickets above it (the game-developer, audio-designer and tip-display work, TAC-11 to TAC-19) must wait for a lead "go". Tuğrul must approve the list first. Nobody starts these tickets before the "go".
-- The new tickets TAC-21 (devops scaffold dependencies) and TAC-22 (README rewrite) are part of the plan. TAC-21 is a prototype dependency and also waits for the "go".
+- The new tickets TAC-21 (devops scaffold dependencies) and TAC-22 (README rewrite) are part of the plan. TAC-21 adds the build base and the CI. It may start now.
 - TAC-20 (tests) follows the code tickets. It has no code to test before the "go".
 
 ## 2. Mission 1 overview
@@ -280,7 +281,7 @@ Each ticket has one owner role.
 | TAC-21 | devops | Mission 1: scaffold dependencies (package.json, Vite, Phaser 3, TypeScript) | yes |
 | TAC-22 | product-manager | README.md: rewrite to new framing | no |
 
-TAC-5 to TAC-10 and TAC-22 may start now. TAC-11 to TAC-19 and TAC-21 wait for the lead "go". TAC-20 follows the code tickets.
+TAC-5 to TAC-10, TAC-21 and TAC-22 may start now. TAC-11 to TAC-19 wait for the lead "go". TAC-20 follows the code tickets.
 
 The Linear tickets hold the scope, acceptance checklist and dependencies. If this table and Linear differ, Linear is newer for ticket detail. This spec is newer for decisions.
 
@@ -306,7 +307,7 @@ The main README.md describes the game with the old framing ("shows how blind ped
 - **OQ-12 (resolved 2026-10-29): Character name.** The working name is "Walker". Tuğrul decides the final name later. Nobody waits for it.
 - **OQ-13: Step back and align.** Core actions include step back and align. In which part does the tutorial teach them? The learning-designer proposes in TAC-8.
 - **OQ-14 (resolved 2026-10-29): Tip reviewers.** The design-critic and the player-psychologist review the tip list. Then the approver.
-- **OQ-15: Traffic light in Part B.** The lead said signals come in a later mission. The tickets assume Part B has no traffic light either. The lead confirms.
+- **OQ-15 (resolved 2026-10-29): Traffic light in Part B.** Part B has no traffic light. Part B has one car on the one-way road. The player listens and waits.
 
 ## 15. Out of scope
 
