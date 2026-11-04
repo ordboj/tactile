@@ -9,17 +9,10 @@ import logicSource from "./Mission1Logic.ts?raw";
 import { Mission1Logic } from "./Mission1Logic";
 import sceneSource from "../scenes/Mission1Scene.ts?raw";
 import mapSource from "../scenes/TactileMapView.ts?raw";
+import pageSource from "../../index.html?raw";
+import { playerLineRow } from "../levels/playerCopy";
 
-const PART_A: readonly PlayerAction[] = [
-  "move",
-  "stop",
-  "turn",
-  "step-back",
-  "align",
-  "listen",
-  "read-map",
-  "cross",
-];
+const PART_A: readonly PlayerAction[] = ["move", "turn", "listen", "read-map", "cross"];
 
 function hooks(): AudioHooks & { danger: number; spatial: SpatialCue[] } {
   const spatial: SpatialCue[] = [];
@@ -127,6 +120,10 @@ describe("mission 1 logic", () => {
     expect(result.view.car?.position).toEqual(car.position);
     expect(result.view.sceneWalker.position).not.toEqual(result.view.car?.position);
     expect(audio.danger).toBe(1);
+    expect(logic.captionText()).toBe(playerLineRow("visual-pair.1", 0));
+    expect(logic.captionText()).toBe("Danger.");
+    expect(pageSource).toContain('src="assets/sound-wave.svg"');
+    expect(logicSource).not.toContain('"Danger."');
     logic.input("cross", logic.timeMs);
     const again = logic.tick(50);
     expect(again.events.filter((event) => event.type === "failure")).toHaveLength(0);

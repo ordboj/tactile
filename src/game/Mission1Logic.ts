@@ -29,6 +29,7 @@ import { touchToQuery, type VibrateFn } from "./traffic/TouchToQuery";
 
 const PLACE_SOUND_MS = 1500;
 const CAR_SOUND_INTERVAL_MS = 800;
+const DANGER_CAPTION_KEY = "visual-pair.1";
 
 function walkerOnRoad(position: Vec2, road: RoadData): boolean {
   if (road.axis !== "horizontal") {
@@ -174,7 +175,7 @@ export class Mission1Logic {
     if (this.captionKey === null) {
       return null;
     }
-    if (this.captionKey === "car-sound.1") {
+    if (this.captionKey === "car-sound.1" || this.captionKey === DANGER_CAPTION_KEY) {
       return playerLineRow(this.captionKey, this.captionRow);
     }
     return playerLine(this.captionKey);
@@ -292,8 +293,7 @@ export class Mission1Logic {
       this.frozen = true;
       this.phase = "failed";
       this.walker.stop();
-      this.audio.stopAll();
-      this.audio.playDanger();
+      this.markDanger();
       this.handleFailure(decision.event);
       return [decision.event];
     }
@@ -381,10 +381,17 @@ export class Mission1Logic {
     this.frozen = true;
     this.phase = "failed";
     this.walker.stop();
-    this.audio.stopAll();
-    this.audio.playDanger();
+    this.markDanger();
     this.handleFailure(decision.event);
     return [decision.event];
+  }
+
+  private markDanger(): void {
+    this.audio.stopAll();
+    this.audio.playDanger();
+    this.captionKey = DANGER_CAPTION_KEY;
+    this.captionRow = 0;
+    this.captionUntilMs = null;
   }
 
   private playPlaceSound(timeMs: number): void {

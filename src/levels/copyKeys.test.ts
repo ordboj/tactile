@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import dangerText from "../../docs/audio/danger-sound.md?raw";
 import cueText from "../../docs/design/sound-cue-visuals.md?raw";
 import tutorialText from "../../docs/learning/part-a-tutorial-text.md?raw";
 import { CONTROL_ACTIONS, controlLabel } from "../scenes/controlLabels";
@@ -27,6 +28,7 @@ describe("copy keys", () => {
       "place-sound.1",
       "car-sound.1",
       "road-pulse.1",
+      "visual-pair.1",
       "cross.5",
       "part-b-feedback-lines.safe-wait.2",
       "part-b-feedback-lines.safe-wait.3",
@@ -34,8 +36,9 @@ describe("copy keys", () => {
     ]);
     expect(keys.size).toBeGreaterThan(10);
     for (const key of keys) {
-      const line = key === "car-sound.1" ? playerLineRow(key, 0) : playerLine(key);
-      const source = playerLineSource(key) === "tutorial" ? tutorialText : cueText;
+      const line = key === "car-sound.1" || key === "visual-pair.1" ? playerLineRow(key, 0) : playerLine(key);
+      const origin = playerLineSource(key);
+      const source = origin === "tutorial" ? tutorialText : origin === "danger" ? dangerText : cueText;
       expect(source).toContain(line);
       const lower = line.toLowerCase();
       for (const banned of BANNED) {
@@ -45,6 +48,7 @@ describe("copy keys", () => {
     }
     expect(playerLineRow("car-sound.1", 1)).toBe("Left. Far.");
     expect(playerLine("place-sound.1")).toBe("Place sound.");
+    expect(playerLineRow("visual-pair.1", 0)).toBe("Danger.");
   });
 
   it("takes control labels from the designer text", () => {

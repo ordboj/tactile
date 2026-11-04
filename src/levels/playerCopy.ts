@@ -1,3 +1,4 @@
+import dangerText from "../../docs/audio/danger-sound.md?raw";
 import cueText from "../../docs/design/sound-cue-visuals.md?raw";
 import tutorialText from "../../docs/learning/part-a-tutorial-text.md?raw";
 
@@ -59,9 +60,10 @@ export function indexPlayerLines(markdown: string): ReadonlyMap<string, string> 
 
 const playerLines = indexPlayerLines(tutorialText);
 const cueLines = indexPlayerLines(cueText);
+const dangerLines = indexPlayerLines(dangerText);
 
 export function playerLine(copyKey: string): string {
-  const line = playerLines.get(copyKey) ?? cueLines.get(copyKey);
+  const line = playerLines.get(copyKey) ?? cueLines.get(copyKey) ?? dangerLines.get(copyKey);
   if (line === undefined) {
     throw new Error(`Missing player line for ${copyKey}`);
   }
@@ -77,12 +79,15 @@ export function playerLineRow(copyKey: string, row: number): string {
   return line;
 }
 
-export function playerLineSource(copyKey: string): "tutorial" | "cues" {
+export function playerLineSource(copyKey: string): "tutorial" | "cues" | "danger" {
   if (playerLines.has(copyKey)) {
     return "tutorial";
   }
   if (cueLines.has(copyKey)) {
     return "cues";
+  }
+  if (dangerLines.has(copyKey)) {
+    return "danger";
   }
   throw new Error(`Missing player line for ${copyKey}`);
 }

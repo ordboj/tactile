@@ -16,15 +16,12 @@ describe("part A flow", () => {
   it("teaches the lead order and shows one instruction from the text doc", () => {
     expect(PART_A_STEP_SPECS.map((step) => step.action)).toEqual([
       "move",
-      "stop",
       "turn",
-      "step-back",
-      "align",
       "listen",
       "read-map",
       "cross",
     ]);
-    expect(PART_A_STEP_SPECS.some((step) => step.action === "wait")).toBe(false);
+    expect(PART_A_STEP_SPECS.some((step) => step.action === "stop" || step.action === "step-back" || step.action === "align" || step.action === "wait")).toBe(false);
     const flow = new PartAFlow(partA);
     for (const spec of PART_A_STEP_SPECS) {
       const line = flow.instructionText();
@@ -45,16 +42,7 @@ describe("part A flow", () => {
 
   it("ends after one cross and never starts the failure flow", () => {
     const flow = new PartAFlow(partA);
-    const actions: PlayerAction[] = [
-      "move",
-      "stop",
-      "turn",
-      "step-back",
-      "align",
-      "listen",
-      "read-map",
-      "cross",
-    ];
+    const actions: PlayerAction[] = ["move", "turn", "listen", "read-map", "cross"];
     let sawPart = false;
     for (const action of actions) {
       const result = flow.tryAction(action);

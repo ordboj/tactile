@@ -46,10 +46,7 @@ const car: CarData = {
 // Do not write a player line in this file.
 const partASteps: readonly TutorialStepData[] = [
   { id: "move", action: "move", copyKeys: ["move.1", "move.2"] },
-  { id: "stop", action: "stop", copyKeys: ["proposed-steps.1", "proposed-steps.2"] },
   { id: "turn", action: "turn", copyKeys: ["turn.1", "turn.2", "turn.3"] },
-  { id: "step-back", action: "step-back", copyKeys: ["proposed-steps.3", "proposed-steps.4"] },
-  { id: "align", action: "align", copyKeys: ["proposed-steps.5", "proposed-steps.6"] },
   { id: "listen", action: "listen", copyKeys: ["listen.1", "listen.2"] },
   { id: "read-map", action: "read-map", copyKeys: ["map.1", "map.2", "map.3", "map.4"] },
   { id: "cross", action: "cross", copyKeys: ["cross.1", "cross.2", "cross.3", "cross.4"] },
