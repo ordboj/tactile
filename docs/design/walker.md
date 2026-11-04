@@ -47,8 +47,8 @@ The eyes do not change.
 
 The spec does not set the road color.
 The spec does not set the pavement color.
-This file proposes the colors below.
-The lead can change them.
+This file sets the colors below.
+The lead accepted the road color, the pavement color and the car colors.
 
 The fill and the outline must each reach a contrast ratio of at least 3:1.
 That rule applies on every ground where the walker stands.
@@ -78,7 +78,7 @@ The rim keeps the dark outline visible on a dark canvas.
 The yellow fill keeps the drop visible on a dark canvas.
 The dark outline keeps the drop visible on a light canvas.
 
-The car colors are a proposal for the silhouette check.
+The lead accepted the car colors for the silhouette check.
 The car is a box.
 The walker is a drop.
 A reviewer turns the picture grey.
@@ -122,9 +122,8 @@ The yellow fill and the light rim do the work on a black canvas.
 
 CSS px is the pixel unit in the page layout.
 
-The spec asks for at least 44 pt (open question OQ-2).
-This file proposes 44 CSS px as the minimum width.
-The lead confirms the unit.
+The lead set 44 pt as 44 CSS px.
+44 CSS px is the minimum width.
 
 On a phone, the scene walker is 48 CSS px across the body.
 48 CSS px is above the 44 CSS px minimum.
@@ -218,7 +217,7 @@ Count the dark outline in the 48 CSS px body width.
 
 ## Open questions
 
-- OQ-2. The spec says 44 pt. This file proposes 44 CSS px as the minimum width. The lead confirms the unit.
+- OQ-2 is resolved. The lead set 44 pt as 44 CSS px. 44 CSS px is the minimum width.
 - OQ-9. The spec does not set a folder for visual style. This file uses `docs/design/`. The lead confirms the folder.
-- The road and the pavement share a brightness band. That band lets the fill and the outline both reach 3:1. A lighter pavement would drop the fill ratio below 3:1. The lead can reject this palette.
-- The car colors are a proposal. They are here for the grey silhouette check.
+- The road and the pavement share a brightness band. That band lets the fill and the outline both reach 3:1. A lighter pavement would drop the fill ratio below 3:1. The lead accepted this road color and this pavement color.
+- The lead accepted the car colors. The grey check is in [docs/design/grayscale-check.md](grayscale-check.md).
