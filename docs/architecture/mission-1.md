@@ -120,7 +120,7 @@ The scene must not invent an event name.
 
 | Event name | When the game logic gives the event |
 | --- | --- |
-| `failure` | Part B predicts contact |
+| `failure` | Part B predicts contact. The event has the predicted contact time and the missed cue id. |
 | `freeze` | The failure flow starts the freeze |
 | `replay` | The short replay starts |
 | `missed-cue` | The missed cue plays again |

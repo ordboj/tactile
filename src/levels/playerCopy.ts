@@ -1,3 +1,4 @@
+import cueText from "../../docs/design/sound-cue-visuals.md?raw";
 import tutorialText from "../../docs/learning/part-a-tutorial-text.md?raw";
 
 function headingSlug(heading: string): string {
@@ -57,13 +58,33 @@ export function indexPlayerLines(markdown: string): ReadonlyMap<string, string> 
 }
 
 const playerLines = indexPlayerLines(tutorialText);
+const cueLines = indexPlayerLines(cueText);
 
 export function playerLine(copyKey: string): string {
-  const line = playerLines.get(copyKey);
+  const line = playerLines.get(copyKey) ?? cueLines.get(copyKey);
   if (line === undefined) {
     throw new Error(`Missing player line for ${copyKey}`);
   }
   return line;
+}
+
+export function playerLineRow(copyKey: string, row: number): string {
+  const lines = playerLine(copyKey).split("\n");
+  const line = lines[row];
+  if (line === undefined || line.trim() === "") {
+    throw new Error(`Missing player line row ${row} for ${copyKey}`);
+  }
+  return line;
+}
+
+export function playerLineSource(copyKey: string): "tutorial" | "cues" {
+  if (playerLines.has(copyKey)) {
+    return "tutorial";
+  }
+  if (cueLines.has(copyKey)) {
+    return "cues";
+  }
+  throw new Error(`Missing player line for ${copyKey}`);
 }
 
 export function playerLineKeys(): readonly string[] {

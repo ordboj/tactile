@@ -1,25 +1,36 @@
 import Phaser from "phaser";
-import { EmptyScene } from "./scenes/EmptyScene";
+import { Mission1Scene, type MissionShell } from "./scenes/Mission1Scene";
 
-export function createGame(parent: HTMLElement): Phaser.Game {
+export function createGame(shell: MissionShell): Phaser.Game {
   return new Phaser.Game({
     type: Phaser.AUTO,
-    parent,
-    width: 800,
-    height: 600,
-    backgroundColor: "#f4f1ea",
+    parent: shell.stage,
+    backgroundColor: "#7A6854",
     banner: false,
     scale: {
-      mode: Phaser.Scale.FIT,
+      mode: Phaser.Scale.RESIZE,
       autoCenter: Phaser.Scale.CENTER_BOTH,
     },
-    scene: [EmptyScene],
+    scene: [new Mission1Scene(shell)],
   });
 }
 
-const parent = document.getElementById("game");
-if (parent === null) {
-  throw new Error("The page has no #game element.");
+function requiredElement(id: string): HTMLElement {
+  const node = document.getElementById(id);
+  if (node === null) {
+    throw new Error(`The page has no #${id} element.`);
+  }
+  return node;
 }
 
-createGame(parent);
+const stage = document.getElementById("game");
+if (stage !== null) {
+  createGame({
+    stage,
+    map: requiredElement("map"),
+    controls: requiredElement("controls"),
+    notice: requiredElement("notice"),
+    line: requiredElement("line"),
+    caption: requiredElement("caption"),
+  });
+}
