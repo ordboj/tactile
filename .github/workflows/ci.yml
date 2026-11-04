@@ -45,13 +45,21 @@ jobs:
             './**/*.md'
             './**/*.markdown'
 
-      # TAC-6: when the game scaffold lands, add install, typecheck, test,
-      # and build in this same job. The check name must stay "CI / ci".
-      # - name: Install
-      #   run: npm ci
-      # - name: Typecheck
-      #   run: npm run typecheck
-      # - name: Test
-      #   run: npm test
-      # - name: Build
-      #   run: npm run build
+      # The job name stays "ci" so the required check "CI / ci" does not change.
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
