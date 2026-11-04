@@ -42,18 +42,30 @@ const car: CarData = {
   heading: { x: 1, y: 0 },
 };
 
+// Copy keys point at docs/learning/part-a-tutorial-text.md.
+// Do not write a player line in this file.
 const partASteps: readonly TutorialStepData[] = [
-  { id: "move", action: "move", text: "The walker moves." },
-  { id: "turn", action: "turn", text: "The walker turns." },
-  { id: "listen", action: "listen", text: "The walker listens." },
-  { id: "read-map", action: "read-map", text: "The walker reads the tactile map." },
-  { id: "cross", action: "cross", text: "The walker crosses the road." },
+  { id: "move", action: "move", copyKeys: ["move.1", "move.2"] },
+  { id: "turn", action: "turn", copyKeys: ["turn.1", "turn.2", "turn.3"] },
+  { id: "listen", action: "listen", copyKeys: ["listen.1", "listen.2"] },
+  { id: "read-map", action: "read-map", copyKeys: ["map.1", "map.2", "map.3", "map.4"] },
+  { id: "cross", action: "cross", copyKeys: ["cross.1", "cross.2", "cross.3", "cross.4"] },
 ];
 
 const partBSteps: readonly TutorialStepData[] = [
-  { id: "listen", action: "listen", text: "The walker listens for the car." },
-  { id: "wait", action: "wait", text: "The walker waits." },
-  { id: "cross", action: "cross", text: "The walker crosses after the car has passed." },
+  {
+    id: "wait",
+    action: "wait",
+    copyKeys: [
+      "cross.5",
+      "cross.6",
+      "cross.7",
+      "part-b-feedback-lines.safe-wait.1",
+      "part-b-feedback-lines.safe-wait.2",
+      "part-b-feedback-lines.safe-wait.3",
+    ],
+  },
+  { id: "cross", action: "cross", copyKeys: ["part-b-feedback-lines.safe-cross.1"] },
 ];
 
 function makePart(

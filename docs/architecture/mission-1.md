@@ -162,8 +162,10 @@ Ticket TAC-12 uses section 8.
 Part A has no car.
 Part A has no traffic light.
 Part A shows the actions move, turn, listen and read the map.
-Each action has one short text line.
-The text uses the third person.
+Each step stores copy keys.
+A copy key points to a player line in docs/learning/part-a-tutorial-text.md.
+The level data does not hold a new player line.
+The player lines in that file use the third person.
 The game has no guide voice.
 The player crosses the road one time.
 Then Part B starts.
@@ -183,6 +185,7 @@ The player waits.
 The player crosses only after the car has passed.
 A stopped car does not make a cross safe.
 No text says that a stopped car makes a cross safe.
+Part B steps store copy keys from the same tutorial text file.
 The level data has this line: "This is a game. Follow local traffic rules."
 The scene shows the line as text.
 The designer sets the screen position of the line.
@@ -322,6 +325,7 @@ The contact rule is the proposal for OQ-8.
 The schema is `LevelData` in `src/levels/schema.ts`.
 A level has an id, a notice and a list of parts.
 A part has an id, cars, a road, a crosswalk, map data and steps.
+A step has an id, an action and copy keys.
 The part has one road.
 The scene and the tactile map use the one road.
 `trafficLight` is null.

@@ -57,7 +57,7 @@ export interface TactileMapData {
 export interface TutorialStepData {
   readonly id: string;
   readonly action: PlayerAction;
-  readonly text: string;
+  readonly copyKeys: readonly string[];
 }
 
 export interface PartData {
@@ -113,7 +113,7 @@ const ROAD_KEYS = ["direction", "lanes", "axis", "from", "to", "width"] as const
 const CAR_KEYS = ["id", "speed", "start", "heading"] as const;
 const CROSSWALK_KEYS = ["id", "from", "to", "width"] as const;
 const MAP_KEYS = ["visible", "width", "height", "walkerStart", "goal"] as const;
-const STEP_KEYS = ["id", "action", "text"] as const;
+const STEP_KEYS = ["id", "action", "copyKeys"] as const;
 const VEC_KEYS = ["x", "y"] as const;
 
 const PART_IDS: readonly PartId[] = ["A", "B"];
@@ -254,6 +254,18 @@ function readMap(value: unknown, path: string): TactileMapData {
   };
 }
 
+function readCopyKeys(value: unknown, path: string): readonly string[] {
+  if (!Array.isArray(value) || value.length < 1) {
+    throw new Error(`${path} must be a non-empty list`);
+  }
+  return value.map((item, index) => {
+    if (typeof item !== "string" || !/^[a-z0-9-]+(?:\.[a-z0-9-]+)+$/.test(item)) {
+      throw new Error(`${path}[${index}] must be a copy key`);
+    }
+    return item;
+  });
+}
+
 function readStep(value: unknown, path: string): TutorialStepData {
   if (!isRecord(value)) {
     throw new Error(`${path} must be a step`);
@@ -265,7 +277,7 @@ function readStep(value: unknown, path: string): TutorialStepData {
   return {
     id: readString(value.id, `${path}.id`),
     action: value.action as PlayerAction,
-    text: readString(value.text, `${path}.text`),
+    copyKeys: readCopyKeys(value.copyKeys, `${path}.copyKeys`),
   };
 }
 
