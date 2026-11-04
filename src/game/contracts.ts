@@ -19,7 +19,11 @@ export const GameEvents = {
 } as const;
 
 export type GameEvent =
-  | { readonly type: typeof GameEvents.failure; readonly predictedContactMs: number }
+  | {
+      readonly type: typeof GameEvents.failure;
+      readonly predictedContactMs: number;
+      readonly missedCueId: string;
+    }
   | { readonly type: typeof GameEvents.freeze }
   | { readonly type: typeof GameEvents.replay; readonly durationMs: number }
   | { readonly type: typeof GameEvents.missedCue; readonly cueId: string }

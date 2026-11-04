@@ -10,22 +10,115 @@
         margin: 0;
         height: 100%;
         overflow: hidden;
-        background: #f4f1ea;
+        background: #6d6f62;
+        color: #14110e;
+        font: 700 16px/1.35 sans-serif;
+      }
+
+      #shell {
+        display: grid;
+        grid-template-columns: minmax(120px, 34%) minmax(160px, 1fr) minmax(112px, 28%);
+        height: 100%;
+      }
+
+      #map {
+        min-width: 0;
+        height: 100%;
+      }
+
+      #stage {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        min-height: 0;
+        background: #7a6854;
+        position: relative;
+      }
+
+      #notice,
+      #line,
+      #caption {
+        margin: 0;
+        padding: 8px;
+        background: #fff6d8;
+        color: #14110e;
+      }
+
+      #notice,
+      #line {
+        white-space: pre-line;
       }
 
       #game {
-        width: 100%;
-        height: 100%;
+        flex: 1;
+        min-height: 0;
         touch-action: none;
       }
 
       #game canvas {
         display: block;
       }
+
+      #caption {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+      }
+
+      #caption[hidden] {
+        display: none;
+      }
+
+      #caption img {
+        width: 16px;
+        height: 16px;
+        flex: none;
+      }
+
+      #controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 8px;
+        box-sizing: border-box;
+        overflow: auto;
+        background: #6d6f62;
+      }
+
+      #controls button {
+        width: 100%;
+        min-height: 56px;
+        min-width: 48px;
+        padding: 8px;
+        border-radius: 8px;
+        border: 3px solid #14110e;
+        background: #fff6d8;
+        color: #14110e;
+        font: 700 16px/1.35 sans-serif;
+        touch-action: manipulation;
+      }
+
+      #controls button:focus-visible {
+        outline: 3px solid #14110e;
+        outline-offset: 2px;
+      }
     </style>
   </head>
   <body>
-    <div id="game"></div>
+    <div id="shell">
+      <div id="map"></div>
+      <div id="stage">
+        <p id="notice"></p>
+        <div id="game"></div>
+        <p id="caption" hidden>
+          <img alt="" src="assets/sound-wave.svg" width="16" height="16" />
+          <span></span>
+        </p>
+        <p id="line"></p>
+      </div>
+      <div id="controls"></div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

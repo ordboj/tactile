@@ -218,6 +218,11 @@ The visual is one, two, or three short bars on the road.
 More bars mean a stronger pulse.
 The bars use `#FFF6D8`.
 Show the caption "Road pulse."
+
+```text
+Road pulse.
+```
+
 The audio fallback is a short tone.
 The tone is not a voice.
 The same caption covers the tone.

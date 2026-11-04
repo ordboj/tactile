@@ -80,6 +80,14 @@ describe("mission 1 data", () => {
     expect(partA.cars).toHaveLength(0);
     expect(partA.trafficLight).toBeNull();
     expect(partA.failureEnabled).toBe(false);
+    expect(partA.steps.map((step) => step.action)).toEqual([
+      "move",
+      "turn",
+      "listen",
+      "read-map",
+      "cross",
+    ]);
+    expect(partA.steps.some((step) => step.action === "stop" || step.action === "step-back" || step.action === "align" || step.action === "wait")).toBe(false);
   });
 
   it("gives Part B one car on a one-way single-lane road", () => {
