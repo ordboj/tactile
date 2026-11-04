@@ -154,25 +154,30 @@ Acceptance criteria:
 The failure flow starts in Part B. The game never shows impact.
 
 Step a. Freeze.
+
 - The scene freezes less than 1 second before contact.
 - The scene goes grey. The character and the car keep their color.
 - A double ring and a sound mark the danger.
 - With reduced motion, the ring is static. The device setting (prefers-reduced-motion) is the default. An in-game switch also sets reduced motion.
 
 Step b. Replay.
+
 - The replay is 3 seconds or less. The player can skip it.
 - The replay shows dashed arrows.
 - The replay shows a text outcome, for example "The car could not stop." The text names the missed cue.
 
 Step c. Missed cue.
+
 - The missed cue plays again. The player finds the cue.
 
 Step d. Rewind.
+
 - The game rewinds to the decision point.
 - The rewind has a real score cost.
 - Safe waits score higher than speed.
 
 Step e. Tip.
+
 - The game shows one practical traffic-safety tip for each failure.
 - The tip is risky content. It goes through gate G1.
 - A tip does not say that a stopped car makes a crossing safe.
@@ -257,6 +262,7 @@ The builder checks marketing text for these words and phrases.
 ## 10. Gates
 
 **G1. Risk gate.**
+
 - Traffic-safety tips that the game shows to players are risky.
 - Risky work: stop before code. Write a design or diff. Get two independent bot reviews. Send it to the reviewer.
 - The reviewer reviews the tip list (lead decision, OQ-14).
@@ -267,11 +273,13 @@ The builder checks marketing text for these words and phrases.
 - Every tip needs a real source. Nobody invents a source or a fact.
 
 **G2. Ethics review.**
+
 - A design that touches representation, framing or marketing needs an ethics review from the reviewer before code.
 - Files go in docs/psychology/.
 - This gate covers: the character (D1), the failure flow (D3) and the player copy (D4).
 
 **G3. Other risk items (handbook).**
+
 - Save-data format or migration.
 - Third-party assets or licenses (for example sounds).
 - A major dependency bump.
@@ -279,6 +287,7 @@ The builder checks marketing text for these words and phrases.
 - A contested review.
 
 **G4. Escalation.**
+
 - Escalate to Tuğrul only through the lead.
 - Cases: an uncertain factual claim in a traffic-safety tip, possible player data loss, spending money, or a reviewer deadlock after 2 rounds.
 
