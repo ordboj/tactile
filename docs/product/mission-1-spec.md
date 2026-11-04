@@ -27,7 +27,7 @@ Rules that follow from these words:
 - The game has no blindness theme.
 - The game has no cane.
 - The game has no blindness copy. No player text, store text or marketing text uses blindness framing.
-- The game has no blind playtests.
+- Playtest recruiting and playtest copy use no blindness framing.
 - The game is not an awareness project and not a social-responsibility project.
 - The core idea stays: a pedestrian finds the way with sound, memory and the tactile map. Visual support fades as levels go on.
 - The game has no guide voice. All feedback is written text.
@@ -164,7 +164,7 @@ Step b. Replay.
 
 - The replay is 3 seconds or less. The player can skip it.
 - The replay shows dashed arrows.
-- The replay shows a text outcome, for example "The car could not stop." The text names the missed cue.
+- The replay shows a text outcome, for example "Walker crossed while the car sound came closer." The text names the missed cue.
 
 Step c. Missed cue.
 
@@ -215,7 +215,7 @@ Sound cue visuals:
 
 - Safe decisions score higher than speed.
 - A failure costs real score. The cost is not zero.
-- The score is for the current session only in Mission 1. The spec does not change the save-data format. If a save change is needed, the builder stops and asks the lead for a ticket (risky, gate G3).
+- The score is for the current session only in Mission 1. The spec does not change the save-data format. If a save change is needed, the builder stops. The builder asks the lead for a ticket.
 - The score numbers are not set yet (OQ-5).
 
 ## 8. Text rules (decision D4)
@@ -264,7 +264,7 @@ The builder checks marketing text for these words and phrases.
 **G1. Risk gate.**
 
 - Traffic-safety tips that the game shows to players are risky.
-- Risky work: stop before code. Write a design or diff. Get two independent bot reviews. Send it to the reviewer.
+- Risky work: stop before code. Write a design or diff. Send it to the reviewer.
 - The reviewer reviews the tip list (lead decision, OQ-14).
 - The reviewer approves the tip list.
 - Merge only after the reviewer says APPROVED and CI is green.
@@ -278,20 +278,22 @@ The builder checks marketing text for these words and phrases.
 - Files go in docs/psychology/.
 - This gate covers: the character (D1), the failure flow (D3) and the player copy (D4).
 
-**G3. Other risk items (handbook).**
+**G3. Risk classes.**
 
-- Save-data format or migration.
-- Third-party assets or licenses (for example sounds).
-- A major dependency bump.
-- A cross-owner change.
-- A contested review.
+These classes are the only risky work:
+
+- A new third-party package, action or asset is risky.
+- Record the license for that package, action or asset.
+- A real-world traffic-safety claim shown to players is risky.
+- A security change is risky.
+- A permission change is risky.
 
 **G4. Escalation.**
 
 - Escalate to Tuğrul only through the lead.
-- Cases: an uncertain factual claim in a traffic-safety tip, possible player data loss, spending money, or a reviewer deadlock after 2 rounds.
+- Cases: an uncertain factual claim in a traffic-safety tip, possible player data loss, spending money, or a REQUEST CHANGES that the owner and the reviewer cannot resolve.
 
-**Workflow gate.** The owner checks main first. A cloud agent works on a fresh branch. The builder writes fail-first tests. A non-author bot reviews. CI goes green. The owner sends the PR link to the lead. The lead merges.
+**Workflow gate.** The lead assigns the work. The builder or the designer does the work. The owner sends the PR URL to the reviewer. The reviewer does one review round. The reviewer gives the risk sign-off in that review. The PR merges when CI is green and the review passes. A docs-only PR with no player-facing copy merges when CI is green. That PR needs no review.
 
 ## 11. Ownership
 
@@ -301,7 +303,8 @@ The team has four roles: lead, builder, designer and reviewer.
 | --- | --- | --- |
 | Scope and specs | lead | docs/product/ |
 | Scenes and game logic | builder | src/scenes/**, src/game/** |
-| Sounds | designer | public/audio/**, src/audio/**, docs/audio/ |
+| Sound code | builder | src/audio/** |
+| Sound design | designer | public/audio/**, docs/audio/ |
 | Visual equivalents of key sound cues | designer | captions or icons for the danger sound and the missed cue |
 | Learning and copy rules | designer | docs/learning/ |
 | Architecture, entry, level data schema, save-data format | builder | src/main.ts, index.html, shared utils, src/levels/** |
@@ -322,7 +325,7 @@ Each ticket has one owner role.
 | Ticket | Owner | Title | Risky |
 | --- | --- | --- | --- |
 | TAC-5 | lead | Mission 1: spec PR (docs/product/mission-1-spec.md) | no |
-| TAC-6 | builder | Mission 1: architecture and level data schema | yes |
+| TAC-6 | builder | Mission 1: architecture and level data schema | no, unless it adds a new third-party package |
 | TAC-7 | designer | Mission 1: yellow drop walker visual spec | no |
 | TAC-8 | designer | Mission 1: Part A tutorial text and feedback copy rules | no |
 | TAC-9 | designer | Mission 1: traffic-safety tip list with sources | yes |
@@ -330,9 +333,9 @@ Each ticket has one owner role.
 | TAC-11 | builder | Mission 1: yellow drop walker on map and in scene | no |
 | TAC-12 | builder | Mission 1: Part A tutorial flow | no |
 | TAC-13 | builder | Mission 1: Part B car and listen-wait logic | no |
-| TAC-14 | designer | Mission 1: car sound and spatial audio | yes |
+| TAC-14 | designer | Mission 1: car sound and spatial audio | yes only if it adds a third-party sound asset |
 | TAC-15 | builder | Mission 1: failure freeze, ring and reduced motion | no |
-| TAC-16 | designer | Mission 1: danger sound and missed-cue replay audio | yes |
+| TAC-16 | designer | Mission 1: danger sound and missed-cue replay audio | yes only if it adds a third-party sound asset |
 | TAC-17 | builder | Mission 1: failure replay with arrows, text outcome and cue replay | no |
 | TAC-18 | builder | Mission 1: rewind, score cost and safe-wait scoring | no |
 | TAC-19 | builder | Mission 1: show one traffic-safety tip after failure | no |
