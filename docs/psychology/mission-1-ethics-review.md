@@ -157,5 +157,5 @@ Opinion: the game name has the largest effect.
 
 ## 7. Sources
 
-- Silverman, A. M., Gwinn, J. D., & Van Boven, L. (2015). Social Psychological and Personality Science. Summary: https://www.apa.org/education-career/k12/infusing-diversity/social-personality/research-summary-blindness-simulation-empathy
+- Silverman, A. M., Gwinn, J. D., & Van Boven, L. (2015). Social Psychological and Personality Science. Summary: <https://www.apa.org/education-career/k12/infusing-diversity/social-personality/research-summary-blindness-simulation-empathy>
 - Ryan, R. M., Rigby, C. S., & Przybylski, A. (2006). The Motivational Pull of Video Games: A Self-Determination Theory Approach. Motivation and Emotion, 30(4).
