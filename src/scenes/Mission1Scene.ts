@@ -34,6 +34,7 @@ const SCENE_BODY_WORLD = 36;
 
 export class Mission1Scene extends Phaser.Scene {
   private logic!: Mission1Logic;
+  private audio!: ReturnType<typeof createPlaceholderAudio>;
   private mapView!: TactileMapView;
   private walkerSprite!: Phaser.GameObjects.Image;
   private carSprite!: Phaser.GameObjects.Rectangle;
@@ -54,7 +55,8 @@ export class Mission1Scene extends Phaser.Scene {
 
   public create(): void {
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches === true;
-    this.logic = new Mission1Logic(createPlaceholderAudio(), {
+    this.audio = createPlaceholderAudio({ reducedMotion: () => reduced });
+    this.logic = new Mission1Logic(this.audio, {
       vibrate: vibrateFromNavigator(window.navigator),
       reducedMotion: reduced,
     });
@@ -119,6 +121,7 @@ export class Mission1Scene extends Phaser.Scene {
     }
     const zone = this.add.zone(WORLD_W / 2, road.from.y, WORLD_W, road.width).setInteractive();
     zone.on("pointerdown", () => {
+      this.audio.prime();
       this.logic.setRoadHold(true);
     });
     this.input.on("pointerup", () => {
@@ -139,6 +142,7 @@ export class Mission1Scene extends Phaser.Scene {
       button.style.minWidth = `${CONTROL_MIN_PX}px`;
       button.style.font = "700 16px/1.35 sans-serif";
       button.addEventListener("click", () => {
+        this.audio.prime();
         this.logic.input(action, this.logic.timeMs);
       });
       this.shell.controls.append(button);
@@ -155,6 +159,7 @@ export class Mission1Scene extends Phaser.Scene {
         return;
       }
       event.preventDefault();
+      this.audio.prime();
       this.logic.input(action, this.logic.timeMs);
     };
     window.addEventListener("keydown", this.onKey);

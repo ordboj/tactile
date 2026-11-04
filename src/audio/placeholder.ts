@@ -1,20 +1,33 @@
 import type { AudioHooks, SpatialCue } from "./hooks";
+import { scheduleDangerTone, type DangerToneHandle } from "./dangerTone";
 
 interface ToneHandle {
   readonly stop: () => void;
 }
 
+export interface PlaceholderAudioOptions {
+  readonly reducedMotion?: () => boolean;
+  readonly createContext?: () => AudioContext;
+}
+
 /**
- * Placeholder tones for the audio hooks.
- * Sine waves only. No voice. No audio files.
+ * Car, place, and road-pulse cues are short sine placeholders.
+ * The danger cue is the tone in docs/audio/danger-sound.md.
+ * No audio files and no voice.
  */
-export function createPlaceholderAudio(): AudioHooks {
+export function createPlaceholderAudio(options: PlaceholderAudioOptions = {}): AudioHooks & {
+  prime(): void;
+} {
   let context: AudioContext | null = null;
   let lastSpatial: SpatialCue | null = null;
   const active: ToneHandle[] = [];
 
   function audioContext(): AudioContext | null {
     if (context !== null) {
+      return context;
+    }
+    if (options.createContext !== undefined) {
+      context = options.createContext();
       return context;
     }
     const webkit = (globalThis as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
@@ -24,6 +37,10 @@ export function createPlaceholderAudio(): AudioHooks {
     }
     context = new Ctor();
     return context;
+  }
+
+  function track(handle: DangerToneHandle): void {
+    active.push(handle);
   }
 
   function tone(frequency: number, seconds: number, gainValue: number, pan: number): void {
@@ -71,9 +88,25 @@ export function createPlaceholderAudio(): AudioHooks {
   }
 
   return {
+    prime() {
+      const audio = audioContext();
+      if (audio !== null && audio.state === "suspended") {
+        void audio.resume();
+      }
+    },
     playSpatial,
     playDanger() {
-      tone(110, 0.45, 0.22, 0);
+      const audio = audioContext();
+      if (audio === null) {
+        return;
+      }
+      if (audio.state === "suspended") {
+        void audio.resume();
+      }
+      const reduced = options.reducedMotion?.() === true;
+      for (const handle of scheduleDangerTone(audio, reduced)) {
+        track(handle);
+      }
     },
     replayCue(cueId) {
       if (lastSpatial !== null && lastSpatial.cueId === cueId) {
