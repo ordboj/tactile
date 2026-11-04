@@ -1,0 +1,6 @@
+# markdownlint-cli2 config. Loaded automatically from the repo root.
+# MD013 (line length, default 80) is off so README prose can stay as full
+# sentences. The current README paragraph is 143 characters; wrapping it
+# would change the document for a style rule.
+config:
+  MD013: false

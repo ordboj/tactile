@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v25
+        with:
+          globs: |
+            **/*.{md,markdown}
+
+      # README.md has no links yet. failIfEmpty defaults to true and would
+      # fail this job until the first link exists, so keep it false.
+      # Accept 429 so a rate limit is not a broken link. Exclude loopback
+      # (localhost and 127.0.0.1) so local dev URLs are not fetched.
+      - name: Check Markdown links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          failIfEmpty: false
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-loopback
+            --accept '100..=103,200..=299,429'
+            './**/*.md'
+            './**/*.markdown'
+
+      # TAC-6: when the game scaffold lands, add install, typecheck, test,
+      # and build in this same job. The check name must stay "CI / ci".
+      # - name: Install
+      #   run: npm ci
+      # - name: Typecheck
+      #   run: npm run typecheck
+      # - name: Test
+      #   run: npm test
+      # - name: Build
+      #   run: npm run build
