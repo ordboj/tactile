@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="ringTitle ringDesc">
+  <title id="ringTitle">Danger ring</title>
+  <desc id="ringDesc">A static double ring. The inner ring is dark. The outer ring is light.</desc>
+  <!-- Original work of this repo. No third-party art. -->
+  <g id="danger-ring" fill="none" stroke-linecap="round">
+    <circle id="danger-ring-inner" cx="60" cy="60" r="40" stroke="#14110E" stroke-width="4"/>
+    <circle id="danger-ring-outer" cx="60" cy="60" r="50" stroke="#F2FBFF" stroke-width="4"/>
+  </g>
+</svg>

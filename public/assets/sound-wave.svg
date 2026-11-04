@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="waveTitle waveDesc">
+  <title id="waveTitle">Sound cue</title>
+  <desc id="waveDesc">Three curved marks for a sound cue. The marks are not a letter.</desc>
+  <!-- Original work of this repo. No third-party art. -->
+  <g id="sound-wave" fill="none" stroke-linecap="round">
+    <g stroke="#FFF6D8" stroke-width="6">
+      <path d="M7 12v8"/>
+      <path d="M14 8c3.2 3 3.2 13 0 16"/>
+      <path d="M21 5c4.6 4.2 4.6 17.8 0 22"/>
+    </g>
+    <g stroke="#14110E" stroke-width="3">
+      <path d="M7 12v8"/>
+      <path d="M14 8c3.2 3 3.2 13 0 16"/>
+      <path d="M21 5c4.6 4.2 4.6 17.8 0 22"/>
+    </g>
+  </g>
+</svg>
