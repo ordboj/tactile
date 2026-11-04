@@ -68,6 +68,7 @@ Do not add a new traffic-safety claim in player text.
 A tip is a traffic-safety claim.
 Tips are out of scope for this file.
 The tip list is TAC-9.
+The list is in [safety-tips.md](safety-tips.md).
 Each tip needs a real source.
 Each tip needs the reviewer.
 
