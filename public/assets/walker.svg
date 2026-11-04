@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 168" role="img" aria-labelledby="walkerTitle walkerDesc">
+  <title id="walkerTitle">Walker</title>
+  <desc id="walkerDesc">A warm yellow drop with a dark outline and two dot eyes. The point shows the heading.</desc>
+  <!-- Original work of this repo. No third-party art. -->
+  <g id="walker">
+    <path id="walker-rim" fill="none" stroke="#FFF6D8" stroke-width="16" stroke-linejoin="round" d="M68 20C68 20 116 64 116 100C116 130 94 148 68 148C42 148 20 130 20 100C20 64 68 20 68 20Z"/>
+    <path id="walker-shape" fill="#FFE566" stroke="#14110E" stroke-width="8" stroke-linejoin="round" d="M68 20C68 20 116 64 116 100C116 130 94 148 68 148C42 148 20 130 20 100C20 64 68 20 68 20Z"/>
+    <g id="walker-eyes" fill="#14110E">
+      <circle cx="52" cy="98" r="7"/>
+      <circle cx="84" cy="98" r="7"/>
+    </g>
+  </g>
+</svg>
