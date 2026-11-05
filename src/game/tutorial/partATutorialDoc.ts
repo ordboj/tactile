@@ -61,7 +61,7 @@ function sectionBlocks(markdown: string): ReadonlyMap<string, string> {
 }
 
 function orderNames(markdown: string): string[] {
-  const orderStart = markdown.indexOf("The order with the proposal is:");
+  const orderStart = markdown.indexOf("The accepted order is:");
   if (orderStart < 0) {
     throw new Error("The Part A tutorial text has no step order");
   }
@@ -83,23 +83,23 @@ function orderNames(markdown: string): string[] {
   return names;
 }
 
-function proposedBlock(proposed: string, name: "Stop" | "Step back" | "Align"): string {
+function stepBlock(section: string, name: "Stop" | "Step back" | "Align"): string {
   const label = `${name}:`;
-  const at = proposed.indexOf(label);
+  const at = section.indexOf(label);
   if (at < 0) {
     throw new Error(`The Part A tutorial text has no ${name} lines`);
   }
-  let end = proposed.length;
+  let end = section.length;
   for (const next of ["Stop:", "Step back:", "Align:"]) {
     if (next === label) {
       continue;
     }
-    const nextAt = proposed.indexOf(next, at + label.length);
+    const nextAt = section.indexOf(next, at + label.length);
     if (nextAt > at && nextAt < end) {
       end = nextAt;
     }
   }
-  return proposed.slice(at, end);
+  return section.slice(at, end);
 }
 
 /**
@@ -108,9 +108,9 @@ function proposedBlock(proposed: string, name: "Stop" | "Step back" | "Align"): 
  */
 export function readPartATutorial(markdown: string): readonly PartATutorialStep[] {
   const sections = sectionBlocks(markdown);
-  const proposed = sections.get("Proposed steps");
-  if (proposed === undefined) {
-    throw new Error("The Part A tutorial text has no proposed steps");
+  const accepted = sections.get("Accepted steps");
+  if (accepted === undefined) {
+    throw new Error("The Part A tutorial text has no accepted steps");
   }
   return orderNames(markdown).map((name) => {
     if (!(name in STEP_ACTION)) {
@@ -119,7 +119,7 @@ export function readPartATutorial(markdown: string): readonly PartATutorialStep[
     const known = name as keyof typeof STEP_ACTION;
     const action = STEP_ACTION[known];
     if (known === "Stop" || known === "Step back" || known === "Align") {
-      const block = proposedBlock(proposed, known);
+      const block = stepBlock(accepted, known);
       return { name: known, action, instruction: instructionLine(block), success: successLine(block) };
     }
     const section = sections.get(known);

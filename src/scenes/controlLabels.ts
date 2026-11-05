@@ -4,10 +4,10 @@ import type { PlayerAction } from "../levels/schema";
 
 const PRESS_KEY: Partial<Record<PlayerAction, string>> = {
   move: "move.1",
-  stop: "proposed-steps.1",
+  stop: "accepted-steps.1",
   turn: "turn.1",
-  "step-back": "proposed-steps.3",
-  align: "proposed-steps.5",
+  "step-back": "accepted-steps.3",
+  align: "accepted-steps.5",
   listen: "listen.1",
   cross: "cross.1",
 };

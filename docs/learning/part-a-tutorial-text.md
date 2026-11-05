@@ -1,5 +1,8 @@
 # Part A tutorial text
 
+Status: accepted.
+The lead (Piyangocu) accepted this text.
+
 This file holds the player lines for Part A.
 It also holds the Part B feedback lines.
 The rules are in [docs/learning/copy-rules.md](copy-rules.md).
@@ -78,7 +81,7 @@ Words: 3.
 The player learns the listen action.
 Part A has no car sound.
 The spec does not name the Part A sound.
-This file proposes a short tone.
+This file uses a short tone.
 The tone is not a voice.
 The caption is "Place sound."
 The caption rules are in [docs/design/sound-cue-visuals.md](../design/sound-cue-visuals.md).
@@ -183,20 +186,22 @@ The car must pass first.
 
 Words: 5.
 
-## Proposed steps
+## Accepted steps
 
-Open question OQ-13 asks where to teach step back and align.
-This section is a proposal.
-It is not the spec script until the lead accepts it.
+Status: accepted.
+The lead accepted these steps.
+These steps are the Part A text.
+The lead decided OQ-13.
+Part A teaches Stop, Step back and Align.
+Wait stays in Part B.
+Part A has no failure flow.
 
 Teach Stop after Move.
 Teach Step back after Turn.
 Teach Align after Step back.
 Teach Listen after Align.
-Keep Wait in Part B.
-Part A still has no failure flow.
 
-The order with the proposal is:
+The accepted order is:
 
 1. Move.
 2. Stop.

@@ -17,10 +17,10 @@ export interface PartAStepSpec {
  */
 export const PART_A_STEP_SPECS: readonly PartAStepSpec[] = [
   { action: "move", instructionKey: "move.1", successKey: "move.2" },
-  { action: "stop", instructionKey: "proposed-steps.1", successKey: "proposed-steps.2" },
+  { action: "stop", instructionKey: "accepted-steps.1", successKey: "accepted-steps.2" },
   { action: "turn", instructionKey: "turn.1", successKey: "turn.3" },
-  { action: "step-back", instructionKey: "proposed-steps.3", successKey: "proposed-steps.4" },
-  { action: "align", instructionKey: "proposed-steps.5", successKey: "proposed-steps.6" },
+  { action: "step-back", instructionKey: "accepted-steps.3", successKey: "accepted-steps.4" },
+  { action: "align", instructionKey: "accepted-steps.5", successKey: "accepted-steps.6" },
   { action: "listen", instructionKey: "listen.1", successKey: "listen.2" },
   { action: "read-map", instructionKey: "map.1", successKey: "map.4" },
   { action: "cross", instructionKey: "cross.1", successKey: "cross.3" },

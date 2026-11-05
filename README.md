@@ -16,4 +16,8 @@ Tactile Maps is a game. It is not a navigation app.
 
 ## Status
 
-The project is in early planning. The repository does not yet contain game code. Product documents go in `docs/product/`.
+Mission 1 prototype work is underway on main.
+The repository contains game code.
+Part A teaches Stop, Step back and Align.
+Wait stays in Part B.
+Product documents go in `docs/product/`.
