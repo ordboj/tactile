@@ -2,29 +2,33 @@ import { describe, expect, it } from "vitest";
 import tutorialText from "../../../docs/learning/part-a-tutorial-text.md?raw";
 import { mission1 } from "../../levels/mission1";
 import { playerLine } from "../../levels/playerCopy";
-import type { PlayerAction } from "../../levels/schema";
 import { GameEvents } from "../contracts";
 import { PART_A_STEP_SPECS, PartAFlow } from "./PartAFlow";
+import { readPartATutorial } from "./partATutorialDoc";
 
 const partA = mission1.parts[0];
+const partB = mission1.parts[1];
+const script = readPartATutorial(tutorialText);
 
-if (partA === undefined) {
+if (partA === undefined || partB === undefined) {
   throw new Error("missing part A");
 }
 
 describe("part A flow", () => {
-  it("teaches the lead order and shows one instruction from the text doc", () => {
-    expect(PART_A_STEP_SPECS.map((step) => step.action)).toEqual([
-      "move",
-      "turn",
-      "listen",
-      "read-map",
-      "cross",
-    ]);
-    expect(PART_A_STEP_SPECS.some((step) => step.action === "stop" || step.action === "step-back" || step.action === "align" || step.action === "wait")).toBe(false);
+  it("teaches the doc order and shows the doc lines", () => {
+    expect(PART_A_STEP_SPECS.map((step) => step.action)).toEqual(script.map((step) => step.action));
+    expect(partA.steps.map((step) => step.action)).toEqual(script.map((step) => step.action));
+    expect(script.some((step) => step.action === "wait")).toBe(false);
+    expect(partB.steps.some((step) => step.action === "wait")).toBe(true);
     const flow = new PartAFlow(partA);
-    for (const spec of PART_A_STEP_SPECS) {
+    for (let index = 0; index < script.length; index += 1) {
+      const step = script[index];
+      const spec = PART_A_STEP_SPECS[index];
+      if (step === undefined || spec === undefined) {
+        throw new Error("Part A step is missing");
+      }
       const line = flow.instructionText();
+      expect(line).toBe(step.instruction);
       expect(line).toBe(playerLine(spec.instructionKey));
       expect(line?.includes("\n")).toBe(false);
       expect(tutorialText).toContain(line);
@@ -33,6 +37,9 @@ describe("part A flow", () => {
       expect(wrong.events).toEqual([]);
       const result = flow.tryAction(spec.action);
       expect(result.accepted).toBe(true);
+      expect(playerLine(spec.successKey)).toBe(step.success);
+      expect(result.events).toContainEqual({ type: GameEvents.text, text: step.success });
+      expect(tutorialText).toContain(step.success);
       expect(result.events.some((event) => event.type === GameEvents.failure)).toBe(false);
       expect(result.events.some((event) => event.type === "freeze")).toBe(false);
     }
@@ -42,7 +49,7 @@ describe("part A flow", () => {
 
   it("ends after one cross and never starts the failure flow", () => {
     const flow = new PartAFlow(partA);
-    const actions: PlayerAction[] = ["move", "turn", "listen", "read-map", "cross"];
+    const actions = script.map((step) => step.action);
     let sawPart = false;
     for (const action of actions) {
       const result = flow.tryAction(action);

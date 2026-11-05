@@ -1,7 +1,7 @@
 # Mission 1 (Scene 1) spec
 
 Status: draft for the lead. Owner: lead.
-Date: 2026-10-28. Updated: 2026-10-29 (lead decisions, see section 2). Updated: 2026-11-04 (ethics review R1, R2 and R3, and the four roles).
+Date: 2026-10-28. Updated: 2026-10-29 (lead decisions, see section 2). Updated: 2026-11-04 (ethics review R1, R2 and R3, and the four roles). Updated: 2026-11-05 (OQ-13).
 Replaces: the earlier draft docs/product/scene-1-decisions.md (deleted). That draft used an old framing.
 Sources: the Tactile team handbook, the lead (Piyangocu), and Tuğrul's words below.
 
@@ -34,7 +34,7 @@ Rules that follow from these words:
 
 ## 1a. Lead decisions and plan status (2026-10-29)
 
-The lead (Piyangocu) decided these open questions on 2026-10-29. Section 14 marks them resolved.
+The lead (Piyangocu) decided OQ-1, OQ-3, OQ-4, OQ-10, OQ-11, OQ-12, OQ-14 and OQ-15 on 2026-10-29. The lead decided OQ-13 on Nov 5, 2026. Section 14 marks these questions resolved.
 
 | OQ | Decision |
 | --- | --- |
@@ -44,6 +44,7 @@ The lead (Piyangocu) decided these open questions on 2026-10-29. Section 14 mark
 | OQ-10 | The builder owns the scaffold dependencies (package.json). The builder owns the architecture. |
 | OQ-11 | The lead rewrites README.md to the new framing in a small PR. The reviewer does the ethics review. |
 | OQ-12 | Working name: "Walker". Tuğrul decides the final name later. Nobody waits for the final name. |
+| OQ-13 | Decided by the lead on Nov 5, 2026: Part A teaches Stop, Step back and Align. Wait stays in Part B. |
 | OQ-14 | The reviewer reviews the tip list. The reviewer approves the tip list. |
 | OQ-15 | Part B has no traffic light. Part B has one car on the one-way road. The player listens and waits. |
 
@@ -98,7 +99,7 @@ Acceptance criteria:
 
 ## 4. Part A: learn the controls (no traffic)
 
-Part A has no traffic and no traffic light. The player learns these actions: move, turn, listen, read the tactile map. The player crosses the road once. Signals come in a later mission.
+Part A has no traffic and no traffic light. Decided by the lead on Nov 5, 2026: Part A teaches Stop, Step back and Align. Wait stays in Part B. The player learns these actions in this order: move, stop, turn, step back, align, listen, read the tactile map. The player crosses the road once. Signals come in a later mission.
 
 Rules:
 
@@ -111,7 +112,8 @@ Rules:
 Acceptance criteria:
 
 - [ ] Part A starts with no car and no traffic light in the scene.
-- [ ] The player does each step: move, turn, listen, read the map.
+- [ ] The player does each step in this order: move, stop, turn, step back, align, listen, read the map.
+- [ ] Part A does not teach Wait. Part B teaches Wait.
 - [ ] Each step shows one short written instruction in third person.
 - [ ] The player crosses the road once. Then Part B starts.
 - [ ] No spoken voice plays.
@@ -372,7 +374,7 @@ The main README.md describes the game with the old framing ("shows how blind ped
 - **OQ-10 (resolved 2026-10-29): Scaffold owner.** The builder owns the scaffold dependencies (package.json). The builder owns the architecture.
 - **OQ-11 (resolved 2026-10-29): README.** The lead rewrites README.md to the new framing in a small PR (TAC-22). The reviewer does the ethics review.
 - **OQ-12 (resolved 2026-10-29): Character name.** The working name is "Walker". Tuğrul decides the final name later. Nobody waits for it.
-- **OQ-13: Step back and align.** Core actions include step back and align. In which part does the tutorial teach them? The designer proposes in TAC-8.
+- **OQ-13 (resolved 2026-11-05): Step back and align.** Decided by the lead on Nov 5, 2026: Part A teaches Stop, Step back and Align. Wait stays in Part B.
 - **OQ-14 (resolved 2026-10-29): Tip reviewers.** The reviewer reviews the tip list. The reviewer approves the tip list.
 - **OQ-15 (resolved 2026-10-29): Traffic light in Part B.** Part B has no traffic light. Part B has one car on the one-way road. The player listens and waits.
 

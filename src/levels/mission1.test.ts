@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import tutorialText from "../../docs/learning/part-a-tutorial-text.md?raw";
+import { readPartATutorial } from "../game/tutorial/partATutorialDoc";
 import mission1Source from "./mission1.ts?raw";
 import { assertMission1, mission1 } from "./mission1";
 import { playerLine } from "./playerCopy";
@@ -7,9 +9,15 @@ import { validateLevel, type LevelData } from "./schema";
 const STEP_LINES = {
   "move.1": "A press on Move walks the walker forward.",
   "move.2": "The walker moved forward.",
+  "proposed-steps.1": "A press on Stop makes the walker stop.",
+  "proposed-steps.2": "The walker stopped.",
   "turn.1": "A press on Turn changes the heading.",
   "turn.2": "The drop point shows the heading.",
   "turn.3": "The walker turned.",
+  "proposed-steps.3": "A press on Back moves the walker back.",
+  "proposed-steps.4": "The walker stepped back.",
+  "proposed-steps.5": "A press on Align sets the walker on the crosswalk.",
+  "proposed-steps.6": "The walker aligned with the crosswalk.",
   "listen.1": "A press on Listen plays the place sound.",
   "listen.2": "The walker listened.",
   "map.1": "The map is on the left.",
@@ -80,14 +88,10 @@ describe("mission 1 data", () => {
     expect(partA.cars).toHaveLength(0);
     expect(partA.trafficLight).toBeNull();
     expect(partA.failureEnabled).toBe(false);
-    expect(partA.steps.map((step) => step.action)).toEqual([
-      "move",
-      "turn",
-      "listen",
-      "read-map",
-      "cross",
-    ]);
-    expect(partA.steps.some((step) => step.action === "stop" || step.action === "step-back" || step.action === "align" || step.action === "wait")).toBe(false);
+    expect(partA.steps.map((step) => step.action)).toEqual(
+      readPartATutorial(tutorialText).map((step) => step.action),
+    );
+    expect(partA.steps.some((step) => step.action === "wait")).toBe(false);
   });
 
   it("gives Part B one car on a one-way single-lane road", () => {
@@ -173,6 +177,9 @@ describe("mission 1 data", () => {
     expect(mission1Source).not.toContain("The walker reads the tactile map.");
     expect(mission1Source).not.toContain("The walker listens for the car.");
     expect(mission1Source).not.toContain("The walker crosses after the car has passed.");
+    expect(mission1Source).not.toContain("The walker stopped.");
+    expect(mission1Source).not.toContain("The walker stepped back.");
+    expect(mission1Source).not.toContain("The walker aligned with the crosswalk.");
   });
 
   it("rejects a player line written on a step", () => {
