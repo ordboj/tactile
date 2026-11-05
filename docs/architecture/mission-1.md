@@ -161,7 +161,9 @@ Ticket TAC-12 uses section 8.
 
 Part A has no car.
 Part A has no traffic light.
-Part A shows the actions move, turn, listen and read the map.
+Part A teaches Stop, Step back and Align.
+Wait stays in Part B.
+Part A shows these actions in this order: move, stop, turn, step back, align, listen and read the map.
 Each step stores copy keys.
 A copy key points to a player line in docs/learning/part-a-tutorial-text.md.
 The level data does not hold a new player line.

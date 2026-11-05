@@ -11,8 +11,9 @@ import sceneSource from "../scenes/Mission1Scene.ts?raw";
 import mapSource from "../scenes/TactileMapView.ts?raw";
 import pageSource from "../../index.html?raw";
 import { playerLineRow } from "../levels/playerCopy";
+import { PART_A_STEP_SPECS } from "./tutorial/PartAFlow";
 
-const PART_A: readonly PlayerAction[] = ["move", "turn", "listen", "read-map", "cross"];
+const PART_A: readonly PlayerAction[] = PART_A_STEP_SPECS.map((step) => step.action);
 
 function hooks(): AudioHooks & { danger: number; spatial: SpatialCue[] } {
   const spatial: SpatialCue[] = [];
