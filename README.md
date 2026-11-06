@@ -6,6 +6,18 @@ A pedestrian finds the way with sound, memory and a tactile map. The working nam
 
 Tactile Maps is a game. It is not a navigation app.
 
+## Autonomous build
+
+Grok Bot agents maintain this repository.
+These agents are the Cursor / Grok Bot team for Tactile Maps.
+The agents make the commits.
+The agents open the pull requests.
+The agents run the deploys.
+This work belongs to the agents.
+The human owner does not do this work during work hours.
+A commit timestamp can fall during business hours.
+That timestamp does not mean a human employer did the work.
+
 ## Stack
 
 - Phaser 3
@@ -22,8 +34,7 @@ Part A teaches Stop, Step back and Align.
 Wait stays in Part B.
 Product documents go in `docs/product/`.
 
-The site address is `tactile.<subdomain>.workers.dev`.
-Replace `<subdomain>` with the Cloudflare account subdomain.
+The live demo is https://tactile.tugrulcansollu.workers.dev.
 The game is served from the root of that address.
 
 A push to the main branch starts the deploy workflow.
