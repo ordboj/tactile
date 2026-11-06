@@ -34,7 +34,7 @@ Part A teaches Stop, Step back and Align.
 Wait stays in Part B.
 Product documents go in `docs/product/`.
 
-The live demo is https://tactile.tugrulcansollu.workers.dev.
+The live demo is [https://tactile.tugrulcansollu.workers.dev](https://tactile.tugrulcansollu.workers.dev).
 The game is served from the root of that address.
 
 A push to the main branch starts the deploy workflow.
